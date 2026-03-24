@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated menu bar</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90' font-family='Nunito,sans-serif'%3EAc%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <h1>Acme co.</h1>
+            <div class="header-actions">
+                <button class="theme-toggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+                    <span class="theme-icon" aria-hidden="true">🌙</span>
+                </button>
+                <button class="menu-button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="main-nav">
+                    <div class="menu-icon"></div>
+                </button>
+            </div>
+        </div>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!-- Main content here -->
+    </main>
+    <script src="../JS/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+/* Theme variables and transitions */
+:root {
+	--HEADER-BGCOLOR: #333;
+	--HEADER-COLOR: #f5f5f5;
+	--NAV-LINK-HOVER: #ffd700;
+	--BODY-BGCOLOR: #fff;
+	--BODY-COLOR: #222;
+	--TRANSITION: background-color 0.3s, color 0.3s;
+}
+
+[data-theme="dark"] {
+	--HEADER-BGCOLOR: #181a1b;
+	--HEADER-COLOR: #f5f5f5;
+	--NAV-LINK-HOVER: #ffd700;
+	--BODY-BGCOLOR: #181a1b;
+	--BODY-COLOR: #f5f5f5;
+}
+
+[data-theme="light"] {
+	--HEADER-BGCOLOR: #f5f5f5;
+	--HEADER-COLOR: #222;
+	--NAV-LINK-HOVER: #0057b8;
+	--BODY-BGCOLOR: #fff;
+	--BODY-COLOR: #222;
+}
+
+html {
+	font-size: 1.5rem;
+	font-family: 'Nunito', sans-serif;
+	background-color: var(--BODY-BGCOLOR);
+	color: var(--BODY-COLOR);
+	transition: var(--TRANSITION);
+}
+
+body {
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+	background-color: var(--BODY-BGCOLOR);
+	color: var(--BODY-COLOR);
+	transition: var(--TRANSITION);
+}
+
+header {
+	background-color: var(--HEADER-BGCOLOR);
+	color: var(--HEADER-COLOR);
+	transition: var(--TRANSITION);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1000;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+main {
+	padding-top: 5.5rem; /* Adjust if header height changes */
+}
+
+.header-title {
+	padding: 0.25rem 0.5rem;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header-actions {
+	display: flex;
+	gap: 0.5rem;
+	align-items: center;
+}
+
+.theme-toggle {
+	background: none;
+	border: none;
+	color: var(--HEADER-COLOR);
+	font-size: 1.5rem;
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.theme-toggle:focus {
+	outline: 2px solid var(--NAV-LINK-HOVER);
+}
+
+.menu-button {
+	align-items: center;
+	background-color: transparent;
+	border: none;
+	display: flex;
+	height: 48px;
+	justify-content: center;
+	position: relative;
+	width: 48px;
+	cursor: pointer;
+	z-index: 1002;
+}
+
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+	background-color: var(--HEADER-COLOR);
+	width: 40px;
+	height: 5px;
+	border-radius: 5px;
+	position: absolute;
+	transition: all 0.5s;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+	content: "";
+}
+
+.menu-icon::before {
+	transform: translate(-20px, -12px);
+}
+
+.menu-icon::after {
+	transform: translate(-20px, 12px);
+}
+
+/* Hamburger animation when menu open */
+.menu-button[aria-expanded="true"] .menu-icon {
+	background-color: transparent;
+	transform: rotate(720deg);
+}
+.menu-button[aria-expanded="true"] .menu-icon::before {
+	transform: translateX(-20px) rotate(45deg);
+}
+.menu-button[aria-expanded="true"] .menu-icon::after {
+	transform: translateX(-20px) rotate(-45deg);
+}
+
+/* Mobile nav open */
+.main-nav.open {
+	display: block;
+	animation: ShowMenu 0.5s ease-in-out forwards;
+}
+
+.main-nav {
+	background-color: var(--HEADER-BGCOLOR);
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	z-index: 1001;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	transform-origin: top center;
+	transition: background-color 0.3s;
+}
+
+@keyframes ShowMenu {
+	0% {
+		transform: scaleY(0);
+	}
+	80% {
+		transform: scaleY(1.2);
+	}
+	100% {
+		transform: scaleY(1);
+	}
+}
+
+.main-nav ul {
+	list-style-type: none;
+	display: flex;
+	flex-flow: column nowrap;
+	margin: 0;
+	padding: 0;
+}
+
+.main-nav li {
+	padding: 0.5rem;
+	border-top: 1px solid var(--HEADER-COLOR);
+}
+
+.main-nav a {
+	display: block;
+	text-align: center;
+	width: 80%;
+	margin: auto;
+	color: var(--HEADER-COLOR);
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: capitalize;
+	letter-spacing: 0.01em;
+	padding: 0.5rem 0;
+	transition: color 0.3s, background-color 0.3s, transform 0.3s;
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+	color: var(--NAV-LINK-HOVER);
+	background-color: rgba(0,0,0,0.05);
+	transform: scale(1.1);
+}
+
+/* Responsive styles */
+@media (min-width: 768px) {
+	/* header position:fixed is kept for sticky nav */
+	.header-title {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+	.menu-button {
+		display: none;
+	}
+	.main-nav {
+		display: block !important;
+		position: static;
+		background: none;
+		box-shadow: none;
+		animation: none;
+		width: auto;
+	}
+	.main-nav ul {
+		flex-direction: row;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 1.5rem;
+	}
+	.main-nav li {
+		border: none;
+		padding: 0;
+	}
+	.main-nav a {
+		width: auto;
+		padding: 0.5rem 1rem;
+		background: none;
+		color: var(--HEADER-COLOR);
+	}
+	.main-nav a:hover,
+	.main-nav a:focus {
+		background: var(--NAV-LINK-HOVER);
+		color: #fff;
+		border-radius: 4px;
+	}
+}
+/* Moved from menu.css. See README for details. */
+
+/* ...existing code from menu.css will be placed here by next step... */

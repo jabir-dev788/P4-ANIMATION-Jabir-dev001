@@ -1,0 +1,38 @@
+# Node modules
+node_modules/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Build output
+dist/
+build/
+
+# Env files
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# SASS cache
+.sass-cache/
+
+# npm debug files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Coverage
+coverage/
+
+# Others
+*.local
+*.swp
