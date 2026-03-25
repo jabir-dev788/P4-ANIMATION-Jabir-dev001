@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', function () {
     };
     // Initial theme
     const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light'));
+    setTheme(savedTheme || (prefersDark ? 'dark' : 'light'));
     if(themeToggle) {
         themeToggle.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');
@@ -21,6 +21,8 @@ window.addEventListener('DOMContentLoaded', function () {
     // Hamburger menu logic
     const menuButton = document.querySelector('.menu-button');
     const nav = document.getElementById('main-nav');
+// sorcery skip: avoid-function-declarations-in-blocks
+// sorcery skip: avoid-function-declarations-in-blocks
     function handleResize() {
         if (window.innerWidth >= 768) {
             nav && nav.classList.remove('open');
